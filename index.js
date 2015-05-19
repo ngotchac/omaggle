@@ -6,7 +6,11 @@ var express = require('express'),
 
     mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/omaggle');
+var mongodbUri = process.env.MONGOLAB_URI ||
+                process.env.MONGOHQ_URL ||
+                'mongodb://localhost/omaggle';
+                
+mongoose.connect(mongodbUri);
 
 var Streamer = mongoose.model('Streamer', mongoose.Schema({
     id: { type: String, index: { unique: true } }
