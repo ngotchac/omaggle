@@ -124,7 +124,7 @@
 
     function connectToBack() {
         // peerConnection = new Peer({ host: 'localhost', port: 3000, path: '/peer' });
-        peerConnection = new Peer({ host: 'https://omaggle.herokuapp.com', secure:true, port:443, key: 'peerjs', debug: 3, path: '/peer' });
+        peerConnection = new Peer({ host: 'omaggle.herokuapp.com', secure:true, port:443, key: 'peerjs', debug: 3, path: '/peer' });
 
         peerConnection.on('open', function(id) {
             myId = id;
