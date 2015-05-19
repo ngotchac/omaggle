@@ -9,7 +9,7 @@ var express = require('express'),
 var mongodbUri = process.env.MONGOLAB_URI ||
                 process.env.MONGOHQ_URL ||
                 'mongodb://localhost/omaggle';
-                
+
 mongoose.connect(mongodbUri);
 
 var Streamer = mongoose.model('Streamer', mongoose.Schema({
@@ -62,7 +62,8 @@ var server = app.listen(app.get('port'), function () {
 });
 
 var peerOptions = {
-        debug: true
+        debug: true,
+        key: 'peerjs'
     },
     peerServer = ExpressPeerServer(server, peerOptions);
 
