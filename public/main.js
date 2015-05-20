@@ -141,10 +141,8 @@
     }
 
     function pingHeroku() {
-        request.get('/ping').end();
-        debugger;
-
-        // setTimeout(pingHeroku, 45000);
+        peerConnection.socket.send({type: 'TEST'});
+        setTimeout(pingHeroku, 20000);
     }
 
     function findPartner() {
