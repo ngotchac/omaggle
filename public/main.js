@@ -130,6 +130,10 @@
             myId = id;
             addInfo('Got ID: ' + myId);
         });
+
+        peerConnection.on('disconnected', function() {
+            peerConnection.reconnect();
+        });
     }
 
     function findPartner() {
