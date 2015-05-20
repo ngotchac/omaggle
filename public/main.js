@@ -135,13 +135,14 @@
             addInfo('Got ID: ' + myId);
 
             pingHeroku();
+            window.__peerConnection = peerConnection;
         });
 
         peerConnection.on('disconnected', connectToBack);
     }
 
     function pingHeroku() {
-        peerConnection.socket.send({type: 'TEST'});
+        peerConnection.socket.send({type: 'message', message: 'ping', date: Date.now()});
         setTimeout(pingHeroku, 20000);
     }
 
