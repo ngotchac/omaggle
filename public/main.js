@@ -142,8 +142,9 @@
 
     function pingHeroku() {
         request.get('/ping').end();
+        debugger;
 
-        setTimeout(pingHeroku, 45000);
+        // setTimeout(pingHeroku, 45000);
     }
 
     function findPartner() {
