@@ -133,9 +133,17 @@
         peerConnection.on('open', function(id) {
             myId = id;
             addInfo('Got ID: ' + myId);
+
+            pingHeroku();
         });
 
         peerConnection.on('disconnected', connectToBack);
+    }
+
+    function pingHeroku() {
+        request.get('/ping').end();
+
+        setTimeout(pingHeroku, 45000);
     }
 
     function findPartner() {

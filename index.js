@@ -23,6 +23,10 @@ app.set('port', (process.env.PORT || 5000));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+app.get('/ping', function(req, res) {
+    res.sendStatus(200);
+});
+
 app.get('/streamer', function(req, res) {
     reqUserId = req.query.myId;
     if(!reqUserId) res.status(400).send('Please provide an Id.');
