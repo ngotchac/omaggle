@@ -123,17 +123,19 @@
     }
 
     function connectToBack() {
+        var options = { host: 'omaggle.herokuapp.com', secure:true, port:443, key: 'peerjs', debug: 3, path: '/peer' };
         // peerConnection = new Peer({ host: 'localhost', port: 3000, path: '/peer' });
-        peerConnection = new Peer({ host: 'omaggle.herokuapp.com', secure:true, port:443, key: 'peerjs', debug: 3, path: '/peer' });
+        if (!myId)
+            peerConnection = new Peer(options);
+        else
+            peerConnection = new Peer(myId, options);
 
         peerConnection.on('open', function(id) {
             myId = id;
             addInfo('Got ID: ' + myId);
         });
 
-        peerConnection.on('disconnected', function() {
-            peerConnection.reconnect();
-        });
+        peerConnection.on('disconnected', connectToBack);
     }
 
     function findPartner() {
