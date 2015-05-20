@@ -59,7 +59,7 @@
     }
 
     /** Global Object, within this context. */
-    var peerConnection, myId, currentCall,
+    var peerConnection, myId, currentCall, timeoutID,
         myStream;
 
     /**
@@ -134,7 +134,8 @@
             myId = id;
             addInfo('Got ID: ' + myId);
 
-            pingHeroku();
+            if (!timeoutID)
+                setTimeout(pingHeroku, 20000);
             window.__peerConnection = peerConnection;
         });
 
@@ -142,8 +143,8 @@
     }
 
     function pingHeroku() {
-        peerConnection.socket.send({type: 'message', message: 'ping', date: Date.now()});
-        // setTimeout(pingHeroku, 20000);
+        peerConnection.socket.send({type: 'ping'});
+        timeoutID = setTimeout(pingHeroku, 20000);
     }
 
     function findPartner() {
