@@ -143,7 +143,7 @@
 
     function pingHeroku() {
         peerConnection.socket.send({type: 'message', message: 'ping', date: Date.now()});
-        setTimeout(pingHeroku, 20000);
+        // setTimeout(pingHeroku, 20000);
     }
 
     function findPartner() {
