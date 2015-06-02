@@ -1,14 +1,15 @@
+/*jshint:environments node */
+
 var express = require('express'),
     bodyParser = require('body-parser'),
-    path = require('path'),
 
     ExpressPeerServer = require('peer').ExpressPeerServer,
 
     mongoose = require('mongoose');
 
 var mongodbUri = process.env.MONGOLAB_URI ||
-                process.env.MONGOHQ_URL ||
-                'mongodb://localhost/omaggle';
+                 process.env.MONGOHQ_URL ||
+                 'mongodb://localhost/omaggle';
 
 mongoose.connect(mongodbUri);
 
@@ -28,7 +29,7 @@ app.get('/ping', function(req, res) {
 });
 
 app.get('/streamer', function(req, res) {
-    reqUserId = req.query.myId;
+    var reqUserId = req.query.myId;
     if(!reqUserId) res.status(400).send('Please provide an Id.');
 
     Streamer.where('id').ne(reqUserId).findOne(function(err, streamer) {
@@ -39,7 +40,7 @@ app.get('/streamer', function(req, res) {
         else if (streamer) res.send(streamer);
         else {
             var streamer = new Streamer({ id: reqUserId });
-            streamer.save(function(err, savedStreamer) {
+            streamer.save(function(err) {
                 if (err) {
                     console.log(err);
                     res.status(400).send(err);
@@ -50,7 +51,7 @@ app.get('/streamer', function(req, res) {
     });
 });
 
-app.delete('/streamer/:id', function(req, res, next) {
+app.delete('/streamer/:id', function(req, res) {
     Streamer.where({ id: req.params.id }).findOneAndRemove(function(err) {
         if (err) {
             console.log(err);
