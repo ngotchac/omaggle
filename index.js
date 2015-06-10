@@ -39,7 +39,7 @@ app.get('/streamer', function(req, res) {
         }
         else if (streamer) res.send(streamer);
         else {
-            var streamer = new Streamer({ id: reqUserId });
+            streamer = new Streamer({ id: reqUserId });
             streamer.save(function(err) {
                 if (err) {
                     console.log(err);
@@ -80,3 +80,4 @@ peerServer.on('disconnect', function(id) {
 });
 
 app.use('/peer', peerServer);
+

@@ -17,7 +17,7 @@
             PeerActions.load();
             this.transitionTo('call');
         },
-        
+
         render: function() {
             return (
                 <div className="start">
@@ -65,3 +65,4 @@
     });
 
 })();
+
