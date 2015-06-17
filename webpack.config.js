@@ -4,7 +4,7 @@ module.exports = {
     context: __dirname + '/public/app',
     entry: './main.js',
     output: {
-        path: __dirname + '/public',
+        path: __dirname + '/public/build',
         filename: 'main.js'
     },
     module: {
@@ -24,3 +24,4 @@ module.exports = {
         new ExtractTextPlugin('main.css')
     ]
 };
+

@@ -12,7 +12,7 @@
         "react"
     ],
     "rules": {
-        "no-shadow": 0,
+        "use-strict": [2, "never"],
         "quotes": [2, "single"],
         "curly": [2, "multi"]
     }

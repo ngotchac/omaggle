@@ -26,7 +26,6 @@ var Actions = Reflux.createActions({
     removeCurrentCall: {},
 
     setWaitingStatus: {}
-
 });
 
 Actions.findPartner.listen(function findPartner() {
